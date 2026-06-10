@@ -1,0 +1,11 @@
+# Netlify configuration — fallback if Vercel is not used.
+# The nitro preset must be changed to "netlify" in vite.config.ts for this to work.
+
+[build]
+  command = "vite build"
+  publish = "dist/client"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
