@@ -1,4 +1,4 @@
-import logoAsset from "@/assets/kaizen-logo.asset.json";
+import logoAsset from "@/assets/Kaizen gb sas fondo negro.jpg.jpeg";
 import { Phone, MapPin, Mail, Facebook, Instagram, Linkedin } from "lucide-react";
 
 export function Footer() {
@@ -7,7 +7,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-8">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-1">
-            <img src={logoAsset.url} alt="Kaizen GB S.A.S." className="h-16 w-auto" width={220} height={64} />
+            <img src={logoAsset} alt="Kaizen GB S.A.S." className="h-16 w-auto" width={220} height={64} />
             <p className="mt-4 text-sm text-secondary-foreground/70">
               Firma de consultoría financiera y contable con más de 20 años impulsando la eficiencia de las empresas en Colombia.
             </p>
@@ -18,13 +18,14 @@ export function Footer() {
               <li><a href="#nosotros" className="hover:text-primary">Quiénes Somos</a></li>
               <li><a href="#servicios" className="hover:text-primary">Servicios</a></li>
               <li><a href="#sectores" className="hover:text-primary">Sectores</a></li>
+              <li><a href="#clientes" className="hover:text-primary">Nuestros Clientes</a></li>
               <li><a href="#contacto" className="hover:text-primary">Contacto</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-display text-lg mb-4">Contacto</h4>
             <ul className="space-y-3 text-sm text-secondary-foreground/70">
-              <li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 text-primary" /> +57 318 274 4629</li>
+              <li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 text-primary" /> +57 304 486 3405</li>
               <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-primary" /> administracion@kaizengbsas.com</li>
               <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 text-primary" /> Av. 68 #75a – 50, Bogotá, Colombia</li>
             </ul>
