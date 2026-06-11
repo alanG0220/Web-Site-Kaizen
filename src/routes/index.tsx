@@ -7,10 +7,10 @@ import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import {
   ClipboardCheck, Calculator, Receipt, Wallet, Users, TrendingUp, Package, BarChart3,
   Award, HeartHandshake, Target, Sparkles, ArrowRight, Phone, MapPin, Mail, MessageCircle,
-  UtensilsCrossed, Coffee, Wine, Hotel, ChefHat, Building2, CheckCircle2,
+  UtensilsCrossed, Wine, Hotel, Building2, CheckCircle2,
 } from "lucide-react";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/")(({
   head: () => ({
     meta: [
       { title: "Kaizen GB S.A.S. — Auditoría, Contabilidad y Asesoría Financiera en Bogotá" },
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
         "@type": "ProfessionalService",
         name: "Kaizen GB S.A.S.",
         description: "Firma de auditoría, contabilidad y asesoría financiera con más de 20 años de experiencia.",
-        telephone: "+57 318 274 4629",
+        telephone: "+57 304 486 3405",
         address: {
           "@type": "PostalAddress",
           streetAddress: "Av. 68 #75a – 50",
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/")({
     }],
   }),
   component: Home,
-});
+}));
 
 const services = [
   { icon: ClipboardCheck, title: "Auditoría Contable", desc: "Revisión integral de estados financieros con rigor técnico y cumplimiento normativo NIIF." },
@@ -54,10 +54,8 @@ const services = [
 
 const sectors = [
   { icon: UtensilsCrossed, label: "Restaurantes" },
-  { icon: Coffee, label: "Cafeterías" },
   { icon: Wine, label: "Bares" },
   { icon: Hotel, label: "Hoteles" },
-  { icon: ChefHat, label: "Sector Gastronómico" },
   { icon: Building2, label: "Otros Sectores" },
 ];
 
@@ -70,6 +68,17 @@ const reasons = [
   { icon: Sparkles, title: "Filosofía Kaizen", desc: "Mejora continua aplicada a cada proceso, cada reporte, cada relación." },
 ];
 
+// CLIENTES — reemplaza los src="" con las rutas reales de los logos en src/assets/
+// Ejemplo: logo: new URL("@/assets/logo-cliente1.png", import.meta.url).href
+const clients = [
+  { name: "Cliente 1", logo: "" },
+  { name: "Cliente 2", logo: "" },
+  { name: "Cliente 3", logo: "" },
+  { name: "Cliente 4", logo: "" },
+  { name: "Cliente 5", logo: "" },
+  { name: "Cliente 6", logo: "" },
+];
+
 function Home() {
   return (
     <div className="min-h-screen bg-background">
@@ -80,6 +89,7 @@ function Home() {
         <About />
         <Services />
         <Sectors />
+        <Clients />
         <WhyUs />
         <Contact />
       </main>
@@ -90,7 +100,7 @@ function Home() {
 }
 
 function Hero() {
-  const waLink = `https://wa.me/573182744629?text=${encodeURIComponent("Hola Kaizen GB, quisiera solicitar asesoría.")}`;
+  const waLink = `https://wa.me/573044863405?text=${encodeURIComponent("Hola Kaizen GB, quisiera solicitar asesoría.")}`;
   return (
     <section id="inicio" className="relative overflow-hidden bg-secondary text-secondary-foreground">
       <div
@@ -129,7 +139,7 @@ function Stats() {
   const items = [
     { value: "+20", label: "Años de experiencia" },
     { value: "100%", label: "Cumplimiento normativo" },
-    { value: "+150", label: "Empresas atendidas" },
+    { value: "+25", label: "Empresas atendidas" },
     { value: "24/7", label: "Soporte disponible" },
   ];
   return (
@@ -242,13 +252,40 @@ function Sectors() {
           title="Experiencia comprobada en industrias clave"
           subtitle="Nos especializamos en sectores con alta operatividad donde el control de costos marca la diferencia."
         />
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
           {sectors.map((s) => (
             <div key={s.label} className="flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 text-center transition-all hover:border-primary hover:shadow-[var(--shadow-card)]">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <s.icon className="h-7 w-7" />
               </div>
               <div className="text-sm font-semibold">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Clients() {
+  return (
+    <section id="clientes" className="bg-muted/40 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <SectionHeader
+          tag="Nuestros Clientes"
+          title="Empresas que confían en nosotros"
+          subtitle="Trabajamos con más de 25 empresas en Bogotá, acompañándolas en su gestión financiera y contable."
+        />
+        <div className="mt-14 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+          {clients.map((c) => (
+            <div key={c.name} className="flex items-center justify-center rounded-xl border border-border bg-card p-6 transition-all hover:border-primary hover:shadow-[var(--shadow-card)]">
+              {c.logo ? (
+                <img src={c.logo} alt={c.name} className="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all" />
+              ) : (
+                <div className="flex h-12 w-full items-center justify-center text-xs text-muted-foreground text-center">
+                  {c.name}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -292,7 +329,7 @@ function Contact() {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `Hola Kaizen GB, soy ${form.name}. ${form.message}\n\nEmail: ${form.email}\nTel: ${form.phone}`;
-    window.open(`https://wa.me/573182744629?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/573044863405?text=${encodeURIComponent(text)}`, "_blank");
     setSent(true);
   };
 
@@ -303,10 +340,10 @@ function Contact() {
         <div className="mt-14 grid gap-10 lg:grid-cols-2">
           <div className="space-y-6">
             {[
-              { icon: Phone, title: "Teléfono", value: "+57 318 274 4629", href: "tel:+573182744629" },
-              { icon: MessageCircle, title: "WhatsApp", value: "Escríbanos ahora", href: "https://wa.me/573182744629" },
-              { icon: Mail, title: "Email", value: "administracion@kaizengbsas.com", href: "mailto:administracion@kaizengbsas.com" },
-              { icon: MapPin, title: "Oficina", value: "Av. 68 #75a – 50, Bogotá, Colombia" },
+              { icon: Phone, title: "Teléfono", value: "+57 304 486 3405", href: "tel:+573044863405" },
+              { icon: MessageCircle, title: "WhatsApp", value: "Escríbanos ahora", href: "https://wa.me/573044863405" },
+              { icon: Mail, title: "Correo Electrónico", value: "administracion@kaizengbsas.com", href: "mailto:administracion@kaizengbsas.com" },
+              { icon: MapPin, title: "Sede Principal", value: "Av. 68 #75a – 50, Bogotá, Colombia" },
             ].map((c) => (
               <a key={c.title} href={c.href ?? "#"} target={c.href?.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-primary hover:shadow-[var(--shadow-card)]">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -335,8 +372,8 @@ function Contact() {
             <div className="mt-6 space-y-4">
               <Field label="Nombre completo" value={form.name} onChange={(v) => setForm({ ...form, name: v })} required maxLength={100} />
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} required maxLength={120} />
-                <Field label="Teléfono" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} required maxLength={20} />
+                <Field label="Correo electrónico" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} required maxLength={120} />
+                <Field label="Teléfono de contacto" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} required maxLength={20} />
               </div>
               <div>
                 <label className="text-sm font-medium">Mensaje</label>
