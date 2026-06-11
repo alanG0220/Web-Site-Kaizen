@@ -68,15 +68,47 @@ const reasons = [
   { icon: Sparkles, title: "Filosofía Kaizen", desc: "Mejora continua aplicada a cada proceso, cada reporte, cada relación." },
 ];
 
-// CLIENTES — reemplaza los src="" con las rutas reales de los logos en src/assets/
-// Ejemplo: logo: new URL("@/assets/logo-cliente1.png", import.meta.url).href
-const clients = [
-  { name: "Cliente 1", logo: "" },
-  { name: "Cliente 2", logo: "" },
-  { name: "Cliente 3", logo: "" },
-  { name: "Cliente 4", logo: "" },
-  { name: "Cliente 5", logo: "" },
-  { name: "Cliente 6", logo: "" },
+// ─── LOGOS SECTOR GASTRONÓMICO ───────────────────────────────────────────────
+// Sube cada imagen a src/assets/clientes/ y reemplaza el src con la ruta.
+// Ejemplo: import logo1 from "@/assets/clientes/acodres.png";
+// Luego pon: src: logo1
+const gastroClients = [
+  { name: "Acodrés",        src: "" },
+  { name: "Italia",         src: "" },
+  { name: "Unión Libre",    src: "" },
+  { name: "Flor Amarilla",  src: "" },
+  { name: "Amor Perfecto",  src: "" },
+  { name: "Yum Bubbles",    src: "" },
+  { name: "Almahu",         src: "" },
+  { name: "La Cajita",      src: "" },
+  { name: "Ascajal",        src: "" },
+  { name: "Martín Berasategui", src: "" },
+  { name: "Ciudad Parrilla",src: "" },
+  { name: "Casserole",      src: "" },
+  { name: "Antoine Chez",   src: "" },
+  { name: "La Gloria",      src: "" },
+  { name: "Bonaparte",      src: "" },
+  { name: "Pizzella",       src: "" },
+  { name: "Merlín",         src: "" },
+  { name: "Bandidas Ales",  src: "" },
+  { name: "Americano",      src: "" },
+  { name: "Nerd Burgers",   src: "" },
+  { name: "El Fogón Parrillero", src: "" },
+  { name: "Beer Pub",       src: "" },
+  { name: "Dublalo",        src: "" },
+  { name: "Suchestó",       src: "" },
+];
+
+// ─── LOGOS OTROS SECTORES ────────────────────────────────────────────────────
+const otherClients = [
+  { name: "Oral Green",     src: "" },
+  { name: "Veca",           src: "" },
+  { name: "Empresa 3",      src: "" },
+  { name: "Ansa Persianas", src: "" },
+  { name: "VPC Vipeca",     src: "" },
+  { name: "El Bocado",      src: "" },
+  { name: "Grupo Mediterr.", src: "" },
+  { name: "Tribu 1126",     src: "" },
 ];
 
 function Home() {
@@ -139,7 +171,7 @@ function Stats() {
   const items = [
     { value: "+20", label: "Años de experiencia" },
     { value: "100%", label: "Cumplimiento normativo" },
-    { value: "+25", label: "Empresas atendidas" },
+    { value: "+30", label: "Empresas que confían en nosotros" },
     { value: "24/7", label: "Soporte disponible" },
   ];
   return (
@@ -267,27 +299,58 @@ function Sectors() {
   );
 }
 
+// Componente reutilizable para cada logo circular
+function ClientLogo({ name, src }: { name: string; src: string }) {
+  return (
+    <div className="flex flex-col items-center gap-2 group">
+      <div className="h-16 w-16 rounded-full border-2 border-border bg-white overflow-hidden flex items-center justify-center transition-all group-hover:border-primary group-hover:shadow-md">
+        {src ? (
+          <img src={src} alt={name} className="h-full w-full object-cover" />
+        ) : (
+          <span className="text-[9px] font-semibold text-center text-muted-foreground px-1 leading-tight">{name}</span>
+        )}
+      </div>
+      <span className="text-[10px] text-center text-muted-foreground max-w-[72px] leading-tight">{name}</span>
+    </div>
+  );
+}
+
 function Clients() {
   return (
     <section id="clientes" className="bg-muted/40 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <SectionHeader
-          tag="Nuestros Clientes"
-          title="Empresas que confían en nosotros"
-          subtitle="Trabajamos con más de 25 empresas en Bogotá, acompañándolas en su gestión financiera y contable."
+          tag="Aliados de Confianza"
+          title="Marcas que crecen con nosotros"
+          subtitle="Más de 30 empresas en Colombia han depositado su confianza en Kaizen GB para impulsar su gestión financiera."
         />
-        <div className="mt-14 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
-          {clients.map((c) => (
-            <div key={c.name} className="flex items-center justify-center rounded-xl border border-border bg-card p-6 transition-all hover:border-primary hover:shadow-[var(--shadow-card)]">
-              {c.logo ? (
-                <img src={c.logo} alt={c.name} className="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all" />
-              ) : (
-                <div className="flex h-12 w-full items-center justify-center text-xs text-muted-foreground text-center">
-                  {c.name}
-                </div>
-              )}
-            </div>
-          ))}
+
+        {/* Sector Gastronómico */}
+        <div className="mt-14">
+          <div className="flex items-center gap-3 mb-6">
+            <UtensilsCrossed className="h-5 w-5 text-primary" />
+            <h3 className="font-display text-lg font-semibold text-foreground">Sector Gastronómico</h3>
+            <div className="flex-1 h-px bg-border" />
+          </div>
+          <div className="flex flex-wrap gap-5 justify-start">
+            {gastroClients.map((c) => (
+              <ClientLogo key={c.name} name={c.name} src={c.src} />
+            ))}
+          </div>
+        </div>
+
+        {/* Otros Sectores */}
+        <div className="mt-12">
+          <div className="flex items-center gap-3 mb-6">
+            <Building2 className="h-5 w-5 text-primary" />
+            <h3 className="font-display text-lg font-semibold text-foreground">Otros Sectores</h3>
+            <div className="flex-1 h-px bg-border" />
+          </div>
+          <div className="flex flex-wrap gap-5 justify-start">
+            {otherClients.map((c) => (
+              <ClientLogo key={c.name} name={c.name} src={c.src} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -328,8 +391,9 @@ function Contact() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `Hola Kaizen GB, soy ${form.name}. ${form.message}\n\nEmail: ${form.email}\nTel: ${form.phone}`;
-    window.open(`https://wa.me/573044863405?text=${encodeURIComponent(text)}`, "_blank");
+    const text = `Hola Kaizen GB, soy ${form.name}.\n\n${form.message}\n\nEmail: ${form.email}\nTel: ${form.phone}`;
+    const waUrl = `https://wa.me/573044863405?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, "_blank", "noopener,noreferrer");
     setSent(true);
   };
 
@@ -343,9 +407,15 @@ function Contact() {
               { icon: Phone, title: "Teléfono", value: "+57 304 486 3405", href: "tel:+573044863405" },
               { icon: MessageCircle, title: "WhatsApp", value: "Escríbanos ahora", href: "https://wa.me/573044863405" },
               { icon: Mail, title: "Correo Electrónico", value: "administracion@kaizengbsas.com", href: "mailto:administracion@kaizengbsas.com" },
-              { icon: MapPin, title: "Sede Principal", value: "Av. 68 #75a – 50, Bogotá, Colombia" },
+              { icon: MapPin, title: "Sede Principal", value: "Av. 68 #75a – 50, Bogotá, Colombia", href: "https://maps.app.goo.gl/Fu4ipCsZwQpvicuy7" },
             ].map((c) => (
-              <a key={c.title} href={c.href ?? "#"} target={c.href?.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-primary hover:shadow-[var(--shadow-card)]">
+              <a
+                key={c.title}
+                href={c.href ?? "#"}
+                target={c.href?.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-primary hover:shadow-[var(--shadow-card)]"
+              >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <c.icon className="h-5 w-5" />
                 </div>
@@ -355,20 +425,35 @@ function Contact() {
                 </div>
               </a>
             ))}
-            <div className="overflow-hidden rounded-xl border border-border">
-              <iframe
-                title="Ubicación Kaizen GB S.A.S."
-                src="https://www.google.com/maps?q=Av.+68+%2375a-50,+Bogota,+Colombia&output=embed"
-                className="h-64 w-full"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+
+            {/* Mapa clickeable que abre Google Maps */}
+            <a
+              href="https://maps.app.goo.gl/Fu4ipCsZwQpvicuy7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block overflow-hidden rounded-xl border border-border hover:border-primary transition-colors"
+              aria-label="Ver en Google Maps"
+            >
+              <div className="relative">
+                <iframe
+                  title="Ubicación Kaizen GB S.A.S."
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.4!2d-74.0847!3d4.7109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwNDInMzkuMiJOIDc0wrAwNScwNS4wIlc!5e0!3m2!1ses!2sco!4v1"
+                  className="h-56 w-full pointer-events-none"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="absolute inset-0 flex items-end justify-center pb-3 pointer-events-none">
+                  <span className="rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground shadow">
+                    Ver en Google Maps →
+                  </span>
+                </div>
+              </div>
+            </a>
           </div>
 
           <form onSubmit={submit} className="rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
             <h3 className="font-display text-2xl font-bold">Solicite su asesoría</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Complete el formulario y nuestro equipo se pondrá en contacto.</p>
+            <p className="mt-1 text-sm text-muted-foreground">Complete el formulario y le contactaremos por WhatsApp de inmediato.</p>
             <div className="mt-6 space-y-4">
               <Field label="Nombre completo" value={form.name} onChange={(v) => setForm({ ...form, name: v })} required maxLength={100} />
               <div className="grid gap-4 sm:grid-cols-2">
@@ -387,10 +472,25 @@ function Contact() {
                   placeholder="Cuéntenos sobre su empresa y necesidades..."
                 />
               </div>
-              <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3.5 font-semibold text-primary-foreground transition-all hover:opacity-90">
-                Enviar Solicitud <ArrowRight className="h-4 w-4" />
+              <button
+                type="submit"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3.5 font-semibold text-primary-foreground transition-all hover:opacity-90"
+              >
+                <MessageCircle className="h-4 w-4" /> Enviar por WhatsApp
               </button>
-              {sent && <p className="text-sm text-primary">¡Gracias! Lo redirigimos a WhatsApp para completar el envío.</p>}
+              {sent && (
+                <p className="text-sm text-primary text-center">
+                  ✅ ¡Listo! Se abrió WhatsApp con su mensaje. Si no abrió,{" "}
+                  <a
+                    href={`https://wa.me/573044863405?text=${encodeURIComponent(`Hola Kaizen GB, soy ${form.name}.\n\n${form.message}\n\nEmail: ${form.email}\nTel: ${form.phone}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline font-semibold"
+                  >
+                    haga clic aquí
+                  </a>.
+                </p>
+              )}
             </div>
           </form>
         </div>
@@ -414,3 +514,4 @@ function Field({ label, value, onChange, type = "text", required, maxLength }: {
     </div>
   );
 }
+
