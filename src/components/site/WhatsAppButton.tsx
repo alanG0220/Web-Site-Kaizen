@@ -2,7 +2,7 @@ export function WhatsAppButton() {
   const message = encodeURIComponent("Hola Kaizen GB, quisiera solicitar asesoría.");
   return (
     <a
-      href={`https://wa.me/573182744629?text=${message}`}
+      href={`https://wa.me/573044863405?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
