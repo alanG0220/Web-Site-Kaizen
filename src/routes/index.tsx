@@ -12,7 +12,7 @@ import {
 
 // Logos — Sector Gastronómico
 import logoAcodres from "@/assets/clientes/acodres.png";
-import logoItalia from "@/assets/clientes/italia.jpeg";
+import logoItalia from "@/assets/clientes/italia-artesana.jpeg";
 import logoUnionLibre from "@/assets/clientes/union-libre.jpeg";
 import logoAmorPerfecto from "@/assets/clientes/amor-perfecto.jpeg";
 import logoYumBabbka from "@/assets/clientes/yum-babbka.png";
@@ -29,7 +29,7 @@ import logoBenditasAlas from "@/assets/clientes/benditas-alas.png";
 import logoHeroesBurguer from "@/assets/clientes/heroes-burguer.png";
 import logoElFogonParrileño from "@/assets/clientes/el-fogon-parrileño.jpeg";
 import logoBeer from "@/assets/clientes/beer.png";
-import logoDussaloBeerPub from "@/assets/clientes/dussalo-beer-pub.png";
+import logoDussaloBeerPub from "@/assets/clientes/dussalo-beer-pub-png.png";
 
 // Logos — Otros Sectores
 import logoOralGreen from "@/assets/clientes/oral-green.jpeg";
@@ -415,12 +415,35 @@ function WhyUs() {
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSending(true);
+
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "9afe9133-79dc-4ac1-bf60-09743e8a933d",
+          subject: `Nueva solicitud de asesoría — ${form.name}`,
+          from_name: "Sitio Web Kaizen GB",
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          message: form.message,
+        }),
+      });
+    } catch {
+      // Si falla el envío de correo, igual continuamos con WhatsApp como respaldo.
+    }
+
     const text = `Hola Kaizen GB, soy ${form.name}.\n\n${form.message}\n\nEmail: ${form.email}\nTel: ${form.phone}`;
     const waUrl = `https://wa.me/573044863405?text=${encodeURIComponent(text)}`;
     window.open(waUrl, "_blank", "noopener,noreferrer");
+
+    setSending(false);
     setSent(true);
   };
 
@@ -501,13 +524,14 @@ function Contact() {
               </div>
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3.5 font-semibold text-primary-foreground transition-all hover:opacity-90"
+                disabled={sending}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3.5 font-semibold text-primary-foreground transition-all hover:opacity-90 disabled:opacity-60"
               >
-                <MessageCircle className="h-4 w-4" /> Enviar por WhatsApp
+                {sending ? "Enviando..." : "Enviar"}
               </button>
               {sent && (
                 <p className="text-sm text-primary text-center">
-                  ✅ ¡Listo! Se abrió WhatsApp con su mensaje. Si no abrió,{" "}
+                  ✅ ¡Listo! Su solicitud fue enviada a nuestro equipo. Si desea continuar también por WhatsApp,{" "}
                   <a
                     href={`https://wa.me/573044863405?text=${encodeURIComponent(`Hola Kaizen GB, soy ${form.name}.\n\n${form.message}\n\nEmail: ${form.email}\nTel: ${form.phone}`)}`}
                     target="_blank"
