@@ -73,41 +73,36 @@ const reasons = [
 // Ejemplo: import logo1 from "@/assets/clientes/acodres.png";
 // Luego pon: src: logo1
 const gastroClients = [
-  { name: "Acodrés",        src: "" },
-  { name: "Italia",         src: "" },
-  { name: "Unión Libre",    src: "" },
-  { name: "Flor Amarilla",  src: "" },
-  { name: "Amor Perfecto",  src: "" },
-  { name: "Yum Bubbles",    src: "" },
-  { name: "Almahu",         src: "" },
-  { name: "La Cajita",      src: "" },
-  { name: "Ascajal",        src: "" },
-  { name: "Martín Berasategui", src: "" },
-  { name: "Ciudad Parrilla",src: "" },
-  { name: "Casserole",      src: "" },
-  { name: "Antoine Chez",   src: "" },
-  { name: "La Gloria",      src: "" },
-  { name: "Bonaparte",      src: "" },
-  { name: "Pizzella",       src: "" },
-  { name: "Merlín",         src: "" },
-  { name: "Bandidas Ales",  src: "" },
-  { name: "Americano",      src: "" },
-  { name: "Nerd Burgers",   src: "" },
-  { name: "El Fogón Parrillero", src: "" },
-  { name: "Beer Pub",       src: "" },
-  { name: "Dublalo",        src: "" },
-  { name: "Suchestó",       src: "" },
+  { name: "Acodrés",            src: "" },
+  { name: "Italia",             src: "" },
+  { name: "Unión Libre",        src: "" },
+  { name: "Amor Perfecto",      src: "" },
+  { name: "Yum Babbka",         src: "" },
+  { name: "Almahu",             src: "" },
+  { name: "La Cajita",          src: "" },
+  { name: "Cascajal",           src: "" },
+  { name: "Martín Berdugo",     src: "" },
+  { name: "Ciudad Parrilla",    src: "" },
+  { name: "Casserole",          src: "" },
+  { name: "Hatsune Sushi",      src: "" },
+  { name: "La Gloria",          src: "" },
+  { name: "Bonaparte",          src: "" },
+  { name: "Merlín",             src: "" },
+  { name: "Benditas Alas",      src: "" },
+  { name: "Heroe's Burguer",    src: "" },
+  { name: "El Fogón Parrileño", src: "" },
+  { name: "Beer Pub",           src: "" },
+  { name: "Dussalo",            src: "" },
+  { name: "Suchesso",           src: "" },
 ];
 
 // ─── LOGOS OTROS SECTORES ────────────────────────────────────────────────────
 const otherClients = [
   { name: "Oral Green",     src: "" },
-  { name: "Veca",           src: "" },
-  { name: "Empresa 3",      src: "" },
+  { name: "Veca Sport",     src: "" },
   { name: "Ansa Persianas", src: "" },
   { name: "VPC Vipeca",     src: "" },
-  { name: "El Bocado",      src: "" },
-  { name: "Grupo Mediterr.", src: "" },
+  { name: "Grupo Madero",   src: "" },
   { name: "Tribu 1126",     src: "" },
 ];
 
@@ -346,10 +341,11 @@ function Clients() {
             <h3 className="font-display text-lg font-semibold text-foreground">Otros Sectores</h3>
             <div className="flex-1 h-px bg-border" />
           </div>
-          <div className="flex flex-wrap gap-5 justify-start">
+          <div className="flex flex-wrap items-center gap-5 justify-start">
             {otherClients.map((c) => (
               <ClientLogo key={c.name} name={c.name} src={c.src} />
             ))}
+            <span className="text-sm text-muted-foreground italic">y más…</span>
           </div>
         </div>
       </div>
@@ -514,4 +510,5 @@ function Field({ label, value, onChange, type = "text", required, maxLength }: {
     </div>
   );
 }
+
 
