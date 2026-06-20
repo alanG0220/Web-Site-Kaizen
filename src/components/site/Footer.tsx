@@ -40,7 +40,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-12 border-t border-sidebar-border pt-6 text-center text-xs text-secondary-foreground/50">
-          © {new Date().getFullYear()} Kaizen GB S.A.S. — Todos los derechos reservados.</p>
+          © {new Date().getFullYear()} Kaizen GB S.A.S. — Todos los derechos reservados.
           className="mt-1">Hecho por Solnex</p>
         </div>
       </div>
