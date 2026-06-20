@@ -10,6 +10,35 @@ import {
   UtensilsCrossed, Wine, Hotel, Building2, CheckCircle2,
 } from "lucide-react";
 
+// Logos — Sector Gastronómico
+import logoAcodres from "@/assets/clientes/acodres.png";
+import logoItalia from "@/assets/clientes/italia.jpeg";
+import logoUnionLibre from "@/assets/clientes/union-libre.jpeg";
+import logoAmorPerfecto from "@/assets/clientes/amor-perfecto.jpeg";
+import logoYumBabbka from "@/assets/clientes/yum-babbka.png";
+import logoLaCajita from "@/assets/clientes/la-cajita.png";
+import logoCascajal from "@/assets/clientes/cascajal.jpeg";
+import logoMartinBerdugo from "@/assets/clientes/martin-berdugo.jpeg";
+import logoCiudadParrilla from "@/assets/clientes/ciudad-parrilla.jpeg";
+import logoLaCasserole from "@/assets/clientes/la-casserole.png";
+import logoHatsuneSushi from "@/assets/clientes/hatsune-sushi.png";
+import logoLaGloria from "@/assets/clientes/la-gloria.jpeg";
+import logoBonaparte from "@/assets/clientes/bonaparte.jpeg";
+import logoMerlin from "@/assets/clientes/merlin.jpeg";
+import logoBenditasAlas from "@/assets/clientes/benditas-alas.png";
+import logoHeroesBurguer from "@/assets/clientes/heroes-burguer.png";
+import logoElFogonParrileño from "@/assets/clientes/el-fogon-parrileño.jpeg";
+import logoBeer from "@/assets/clientes/beer.png";
+import logoDussaloBeerPub from "@/assets/clientes/dussalo-beer-pub.png";
+
+// Logos — Otros Sectores
+import logoOralGreen from "@/assets/clientes/oral-green.jpeg";
+import logoVecaSport from "@/assets/clientes/veca-sport.png";
+import logoAnsaPersianas from "@/assets/clientes/ansa-persianas.png";
+import logoVpcVipeca from "@/assets/clientes/vpc-vipeca.jpeg";
+import logoGrupoMadero from "@/assets/clientes/grupo-madero.png";
+import logoTribu1126 from "@/assets/clientes/tribu-1126.jpeg";
+
 export const Route = createFileRoute("/")(({
   head: () => ({
     meta: [
@@ -69,41 +98,36 @@ const reasons = [
 ];
 
 // ─── LOGOS SECTOR GASTRONÓMICO ───────────────────────────────────────────────
-// Sube cada imagen a src/assets/clientes/ y reemplaza el src con la ruta.
-// Ejemplo: import logo1 from "@/assets/clientes/acodres.png";
-// Luego pon: src: logo1
 const gastroClients = [
-  { name: "Acodrés",            src: "" },
-  { name: "Italia",             src: "" },
-  { name: "Unión Libre",        src: "" },
-  { name: "Amor Perfecto",      src: "" },
-  { name: "Yum Babbka",         src: "" },
-  { name: "Almahu",             src: "" },
-  { name: "La Cajita",          src: "" },
-  { name: "Cascajal",           src: "" },
-  { name: "Martín Berdugo",     src: "" },
-  { name: "Ciudad Parrilla",    src: "" },
-  { name: "Casserole",          src: "" },
-  { name: "Hatsune Sushi",      src: "" },
-  { name: "La Gloria",          src: "" },
-  { name: "Bonaparte",          src: "" },
-  { name: "Merlín",             src: "" },
-  { name: "Benditas Alas",      src: "" },
-  { name: "Heroe's Burguer",    src: "" },
-  { name: "El Fogón Parrileño", src: "" },
-  { name: "Beer Pub",           src: "" },
-  { name: "Dussalo",            src: "" },
-  { name: "Suchesso",           src: "" },
+  { name: "Acodrés",            src: logoAcodres },
+  { name: "Italia",             src: logoItalia },
+  { name: "Unión Libre",        src: logoUnionLibre },
+  { name: "Amor Perfecto",      src: logoAmorPerfecto },
+  { name: "Yum Babbka",         src: logoYumBabbka },
+  { name: "La Cajita",          src: logoLaCajita },
+  { name: "Cascajal",           src: logoCascajal },
+  { name: "Martín Berdugo",     src: logoMartinBerdugo },
+  { name: "Ciudad Parrilla",    src: logoCiudadParrilla },
+  { name: "La Casserole",       src: logoLaCasserole },
+  { name: "Hatsune Sushi",      src: logoHatsuneSushi },
+  { name: "La Gloria",          src: logoLaGloria },
+  { name: "Bonaparte",          src: logoBonaparte },
+  { name: "Merlín",             src: logoMerlin },
+  { name: "Benditas Alas",      src: logoBenditasAlas },
+  { name: "Heroe's Burguer",    src: logoHeroesBurguer },
+  { name: "El Fogón Parrileño", src: logoElFogonParrileño },
+  { name: "Beer",               src: logoBeer },
+  { name: "Dussalo Beer Pub",   src: logoDussaloBeerPub },
 ];
 
 // ─── LOGOS OTROS SECTORES ────────────────────────────────────────────────────
 const otherClients = [
-  { name: "Oral Green",     src: "" },
-  { name: "Veca Sport",     src: "" },
-  { name: "Ansa Persianas", src: "" },
-  { name: "VPC Vipeca",     src: "" },
-  { name: "Grupo Madero",   src: "" },
-  { name: "Tribu 1126",     src: "" },
+  { name: "Oral Green",     src: logoOralGreen },
+  { name: "Veca Sport",     src: logoVecaSport },
+  { name: "Ansa Persianas", src: logoAnsaPersianas },
+  { name: "VPC Vipeca",     src: logoVpcVipeca },
+  { name: "Grupo Madero",   src: logoGrupoMadero },
+  { name: "Tribu 1126",     src: logoTribu1126 },
 ];
 
 function Home() {
@@ -311,6 +335,9 @@ function ClientLogo({ name, src }: { name: string; src: string }) {
 }
 
 function Clients() {
+  const gastroRow1 = gastroClients.slice(0, 10);
+  const gastroRow2 = gastroClients.slice(10, 19);
+
   return (
     <section id="clientes" className="bg-muted/40 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
@@ -322,30 +349,34 @@ function Clients() {
 
         {/* Sector Gastronómico */}
         <div className="mt-14">
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center justify-center gap-3 mb-8">
             <UtensilsCrossed className="h-5 w-5 text-primary" />
             <h3 className="font-display text-lg font-semibold text-foreground">Sector Gastronómico</h3>
-            <div className="flex-1 h-px bg-border" />
           </div>
-          <div className="flex flex-wrap gap-5 justify-start">
-            {gastroClients.map((c) => (
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-8">
+            {gastroRow1.map((c) => (
               <ClientLogo key={c.name} name={c.name} src={c.src} />
             ))}
+          </div>
+          <div className="mt-8 flex flex-wrap justify-center items-center gap-x-6 gap-y-8">
+            {gastroRow2.map((c) => (
+              <ClientLogo key={c.name} name={c.name} src={c.src} />
+            ))}
+            <span className="text-sm text-muted-foreground italic self-center">y más...</span>
           </div>
         </div>
 
         {/* Otros Sectores */}
-        <div className="mt-12">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="mt-16">
+          <div className="flex items-center justify-center gap-3 mb-8">
             <Building2 className="h-5 w-5 text-primary" />
             <h3 className="font-display text-lg font-semibold text-foreground">Otros Sectores</h3>
-            <div className="flex-1 h-px bg-border" />
           </div>
-          <div className="flex flex-wrap items-center gap-5 justify-start">
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-8">
             {otherClients.map((c) => (
               <ClientLogo key={c.name} name={c.name} src={c.src} />
             ))}
-            <span className="text-sm text-muted-foreground italic">y más…</span>
+            <span className="text-sm text-muted-foreground italic self-center">y más...</span>
           </div>
         </div>
       </div>
@@ -510,5 +541,6 @@ function Field({ label, value, onChange, type = "text", required, maxLength }: {
     </div>
   );
 }
+
 
 
